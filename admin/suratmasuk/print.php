@@ -10,7 +10,6 @@ if (isset($_POST['cetak'])) {
 
     $data = $koneksi->query("SELECT * FROM
     surat_masuk AS sm 
-    LEFT JOIN pegawai AS p ON sm.id_peg = p.id_peg
     LEFT JOIN kategori AS k ON sm.id_kategori = k.id_kategori
     WHERE sm.tgl_terima BETWEEN '$tgl1' AND '$tgl2' ORDER BY sm.tgl_terima ASC");
 }
@@ -20,7 +19,6 @@ if (isset($_POST['c1'])) {
 
     $data = $koneksi->query("SELECT * FROM
     surat_masuk AS sm 
-    LEFT JOIN pegawai AS p ON sm.id_peg = p.id_peg
     LEFT JOIN kategori AS k ON sm.id_kategori = k.id_kategori
     WHERE sm.id_kategori = '$kategori'");
 }
@@ -62,7 +60,10 @@ $bln = array(
         <font size="5" align="center">DESA TINGGIRAN TENGAH</font><br>
         <font size="2">Jl. Handil Mesjid RT 04 Kec. Mekarsari Kab.Barito Kuala Kode Pos 70568</font><br>
         <hr size="2px" color="black">
-        </b></p>
+        </b>
+    <h3 style="text-align:center;">Laporan Surat Masuk</h3>
+    </p>
+
 
     <div class="row">
         <div class="col-sm-12">
@@ -73,7 +74,7 @@ $bln = array(
                             <th>No</th>
                             <th>Nomor Surat Masuk</th>
                             <th>Tanggal Terima</th>
-                            <th>Nama Pegawai</th>
+                            <th>Nama Pengirim</th>
                             <th>Kategori</th>
                             <th>Keterangan Surat</th>
                             <th>Status</th>
@@ -86,7 +87,7 @@ $bln = array(
                                 <td align="center"><?= $no++ ?></td>
                                 <td><?= $row['no_surat'] ?></td>
                                 <td><?= tgl_indo($row['tgl_terima']) ?></td>
-                                <td><?= $row['nama'] ?></td>
+                                <td><?= $row['pengirim'] ?></td>
                                 <td><?= $row['nama_kategori'] ?></td>
                                 <td><?= $row['ket_surat'] ?></td>
                                 <td>Verifikasi Admin : <?=  $row['status_admin'] ?></td>

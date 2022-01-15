@@ -49,7 +49,7 @@ include '../templates/head.php';
           <div class="alert alert-info" role="alert">
             <h5><b>
                 <i class="fa fa-info-circle"></i>
-                "Selamat Datang Di Aplikasi Manajemen Surat Menyurat"
+                "SELAMAT DATANG DI SISTEM INFORMASI ARSIP DIGITAL DESA TINGGIRAN TENGAH"
               </b></h5>
           </div>
 

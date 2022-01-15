@@ -33,7 +33,7 @@ require 'config/config.php';
     <div class="card">
       <div class="login-logo">
         <br>
-        <h2 style="font-family:Impact, Charcoal, sans-serif">MANAJEMEN SURAT MENYURAT DESA TINGGIRAN TENGAH<br></h2>
+        <h4 style="font-family:Impact, Charcoal, sans-serif">SISTEM INFORMASI ARSIP DIGITAL<br>DESA TINGGIRAN TENGAH<br></h4>
         <h3>
           <img src="<?= base_url() ?>/assets/dist/img/logo.png" style="margin-top: 20px; margin-bottom: 20px;" width="127px;" height="120px;">
           

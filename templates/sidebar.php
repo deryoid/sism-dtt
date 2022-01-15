@@ -73,14 +73,14 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?= base_url('admin/pegawai/') ?>" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Data Pegawai
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="<?= base_url('admin/suratmasuk') ?>" class="nav-link">
               <i class="nav-icon fas fa-envelope-open-text"></i>

@@ -73,7 +73,6 @@ include '../../templates/head.php';
                                                     <th>No</th>
                                                     <th>Nomor Surat Keluar</th>
                                                     <th>Tanggal Terima</th>
-                                                    <th>Nama Pegawai</th>
                                                     <th>Kategori</th>
                                                     <th>Keterangan Surat</th>
                                                     <th>Status</th>
@@ -86,7 +85,6 @@ include '../../templates/head.php';
                                             $no = 1;
                                             $data = $koneksi->query("SELECT * FROM
                                             surat_keluar AS sk 
-                                            LEFT JOIN pegawai AS p ON sk.id_peg = p.id_peg
                                             LEFT JOIN kategori AS k ON sk.id_kategori = k.id_kategori
                                             ORDER BY sk.id_sk DESC");
                                             while ($row = $data->fetch_array()) {
@@ -95,7 +93,6 @@ include '../../templates/head.php';
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td><?= $row['no_surat'] ?></td>
                                                         <td><?= $row['tgl_kirim'] ? tgl_indo($row['tgl_kirim']) : '--/--/----'; ?></td>
-                                                        <td><?= $row['nama'] ?></td>
                                                         <td><?= $row['nama_kategori'] ?></td>
                                                         <td><?= $row['ket_surat'] ?></td>
                                                         

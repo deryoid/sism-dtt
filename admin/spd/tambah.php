@@ -74,20 +74,6 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="id_peg" class="col-sm-2 col-form-label">Pegawai</label>
-                                            <div class="col-sm-10">
-                                                <select class="form-control select2" data-placeholder="Pilih" id="id_peg" name="id_peg">
-                                                    <option value=""></option>
-                                                    <?php
-                                                    $data1 = $koneksi->query("SELECT * FROM pegawai ORDER BY id_peg ASC");
-                                                    while ($dsn = $data1->fetch_array()) {
-                                                    ?>
-                                                        <option value="<?= $dsn['id_peg'] ?>"><?= $dsn['nama'] ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control select2" data-placeholder="Pilih" id="id_kategori" name="id_kategori">
@@ -169,7 +155,6 @@ include '../../templates/head.php';
     if (isset($_POST['submit'])) {
         $no_surat        = $_POST['no_surat'];
         $tgl_pd          = $_POST['tgl_pd'];
-        $id_peg          = $_POST['id_peg'];
         $id_kategori     = $_POST['id_kategori'];
         $ket_spd         = $_POST['ket_spd'];
         $tujuan_pd       = $_POST['tujuan_pd'];
@@ -244,7 +229,6 @@ include '../../templates/head.php';
             NULL,
             '$no_surat',
             '$tgl_pd',
-            '$id_peg',
             '$id_kategori',
             '$ket_spd',
             '$tujuan_pd',

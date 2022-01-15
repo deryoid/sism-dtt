@@ -73,20 +73,14 @@ include '../../templates/head.php';
                                                 <input type="date" class="form-control" id="tgl_terima" name="tgl_terima">
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row">
-                                            <label for="id_peg" class="col-sm-2 col-form-label">Pegawai</label>
+                                            <label for="tgl_terima" class="col-sm-2 col-form-label">Nama Pengirim</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control select2" data-placeholder="Pilih" id="id_peg" name="id_peg">
-                                                    <option value=""></option>
-                                                    <?php
-                                                    $data1 = $koneksi->query("SELECT * FROM pegawai ORDER BY id_peg ASC");
-                                                    while ($dsn = $data1->fetch_array()) {
-                                                    ?>
-                                                        <option value="<?= $dsn['id_peg'] ?>"><?= $dsn['nama'] ?></option>
-                                                    <?php } ?>
-                                                </select>
+                                                <input type="text" class="form-control" id="pengirim" name="pengirim">
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row">
                                             <label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
                                             <div class="col-sm-10">
@@ -157,7 +151,7 @@ include '../../templates/head.php';
     if (isset($_POST['submit'])) {
         $no_surat        = $_POST['no_surat'];
         $tgl_terima      = $_POST['tgl_terima'];
-        $id_peg          = $_POST['id_peg'];
+        $pengirim          = $_POST['pengirim'];
         $id_kategori     = $_POST['id_kategori'];
         $ket_surat       = $_POST['ket_surat'];
     
@@ -230,7 +224,7 @@ include '../../templates/head.php';
             NULL,
             '$no_surat',
             '$tgl_terima',
-            '$id_peg',
+            '$pengirim',
             '$id_kategori',
             '$ket_surat',
             'Menunggu',
