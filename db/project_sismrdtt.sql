@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Waktu pembuatan: 24 Sep 2021 pada 08.22
--- Versi server: 5.7.24
--- Versi PHP: 7.4.12
+-- Host: localhost:8889
+-- Waktu pembuatan: 15 Jan 2022 pada 08.42
+-- Versi server: 5.7.34
+-- Versi PHP: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,7 +79,6 @@ CREATE TABLE `surat_keluar` (
   `no_surat` varchar(100) NOT NULL,
   `tgl_kirim` date NOT NULL,
   `tujuan` varchar(150) NOT NULL,
-  `id_peg` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `ket_surat` text NOT NULL,
   `status_admin` varchar(18) NOT NULL,
@@ -97,7 +96,7 @@ CREATE TABLE `surat_masuk` (
   `id_sm` int(11) NOT NULL,
   `no_surat` varchar(100) NOT NULL,
   `tgl_terima` date DEFAULT NULL,
-  `id_peg` int(11) NOT NULL,
+  `pengirim` varchar(150) NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `ket_surat` text NOT NULL,
   `status_admin` varchar(18) DEFAULT NULL,
@@ -105,13 +104,6 @@ CREATE TABLE `surat_masuk` (
   `tanggapan` text,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `surat_masuk`
---
-
-INSERT INTO `surat_masuk` (`id_sm`, `no_surat`, `tgl_terima`, `id_peg`, `id_kategori`, `ket_surat`, `status_admin`, `status_pimpinan`, `tanggapan`, `file`) VALUES
-(2, '234', '2021-09-24', 1, 1, '234', 'Disetujui', 'Menunggu', 'Menunggu Tanggapan', '6368.jpg');
 
 -- --------------------------------------------------------
 
@@ -123,7 +115,6 @@ CREATE TABLE `surat_pd` (
   `id_spd` int(11) NOT NULL,
   `no_surat` varchar(100) NOT NULL,
   `tgl_pd` date NOT NULL,
-  `id_peg` int(11) NOT NULL,
   `id_kategori` int(11) NOT NULL,
   `ket_spd` text NOT NULL,
   `tujuan_pd` varchar(50) NOT NULL,
@@ -133,13 +124,6 @@ CREATE TABLE `surat_pd` (
   `tanggapan` text NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `surat_pd`
---
-
-INSERT INTO `surat_pd` (`id_spd`, `no_surat`, `tgl_pd`, `id_peg`, `id_kategori`, `ket_spd`, `tujuan_pd`, `keperluan_pd`, `status_admin`, `status_pimpinan`, `tanggapan`, `file`) VALUES
-(5, '123', '2021-09-24', 2, 3, '123', '123', '123', 'Disetujui', 'Menunggu', 'Menunggu Tanggapan', '87531.pdf');
 
 -- --------------------------------------------------------
 
@@ -185,7 +169,6 @@ ALTER TABLE `pegawai`
 --
 ALTER TABLE `surat_keluar`
   ADD PRIMARY KEY (`id_sk`),
-  ADD KEY `id_peg` (`id_peg`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
@@ -193,7 +176,6 @@ ALTER TABLE `surat_keluar`
 --
 ALTER TABLE `surat_masuk`
   ADD PRIMARY KEY (`id_sm`),
-  ADD KEY `id_peg` (`id_peg`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
@@ -201,7 +183,6 @@ ALTER TABLE `surat_masuk`
 --
 ALTER TABLE `surat_pd`
   ADD PRIMARY KEY (`id_spd`),
-  ADD KEY `id_peg` (`id_peg`),
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
@@ -230,19 +211,19 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT untuk tabel `surat_keluar`
 --
 ALTER TABLE `surat_keluar`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `surat_masuk`
 --
 ALTER TABLE `surat_masuk`
-  MODIFY `id_sm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `surat_pd`
 --
 ALTER TABLE `surat_pd`
-  MODIFY `id_spd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_spd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
@@ -258,21 +239,18 @@ ALTER TABLE `user`
 -- Ketidakleluasaan untuk tabel `surat_keluar`
 --
 ALTER TABLE `surat_keluar`
-  ADD CONSTRAINT `surat_keluar_ibfk_1` FOREIGN KEY (`id_peg`) REFERENCES `pegawai` (`id_peg`),
   ADD CONSTRAINT `surat_keluar_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 
 --
 -- Ketidakleluasaan untuk tabel `surat_masuk`
 --
 ALTER TABLE `surat_masuk`
-  ADD CONSTRAINT `surat_masuk_ibfk_1` FOREIGN KEY (`id_peg`) REFERENCES `pegawai` (`id_peg`),
   ADD CONSTRAINT `surat_masuk_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 
 --
 -- Ketidakleluasaan untuk tabel `surat_pd`
 --
 ALTER TABLE `surat_pd`
-  ADD CONSTRAINT `surat_pd_ibfk_1` FOREIGN KEY (`id_peg`) REFERENCES `pegawai` (`id_peg`),
   ADD CONSTRAINT `surat_pd_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 COMMIT;
 
