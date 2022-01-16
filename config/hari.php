@@ -1,40 +1,37 @@
 <?php
 
-function hari_ini(){
-	$hari = date ("D");
- 
-	switch($hari){
+function hari_ini()
+{
+	$hari = date("D");
+
+	switch ($hari) {
 		case 'Sun':
 			$hari_ini = "Minggu";
-		break;
- 
-		case 'Mon':			
+			break;
+
+		case 'Mon':
 			$hari_ini = "Senin";
-		break;
- 
+			break;
+
 		case 'Tue':
 			$hari_ini = "Selasa";
-		break;
- 
+			break;
+
 		case 'Wed':
 			$hari_ini = "Rabu";
-		break;
- 
+			break;
+
 		case 'Thu':
 			$hari_ini = "Kamis";
-		break;
- 
+			break;
+
 		case 'Fri':
 			$hari_ini = "Jumat";
-		break;
- 
+			break;
+
 		case 'Sat':
 			$hari_ini = "Sabtu";
-		break;
-
+			break;
+	}
+	return $hari_ini;
 }
-		return $hari_ini;
-
-}
-
-?>
