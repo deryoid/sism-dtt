@@ -1,7 +1,7 @@
 <?php 
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "root";
 $name = "project_sismrdtt";
 
 $koneksi = mysqli_connect($host, $user, $password, $name);

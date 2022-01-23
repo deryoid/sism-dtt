@@ -77,7 +77,6 @@ $bln = array(
                             <th>Nama Pengirim</th>
                             <th>Kategori</th>
                             <th>Keterangan Surat</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -90,7 +89,6 @@ $bln = array(
                                 <td><?= $row['pengirim'] ?></td>
                                 <td><?= $row['nama_kategori'] ?></td>
                                 <td><?= $row['ket_surat'] ?></td>
-                                <td>Verifikasi Admin : <?=  $row['status_admin'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

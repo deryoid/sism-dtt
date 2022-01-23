@@ -74,23 +74,9 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="id_kategori" class="col-sm-2 col-form-label">Kategori</label>
+                                            <label for="nama_spd" class="col-sm-2 col-form-label"> Nama yang Melakukan SPD</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control select2" data-placeholder="Pilih" id="id_kategori" name="id_kategori">
-                                                    <option value=""></option>
-                                                    <?php
-                                                    $data2 = $koneksi->query("SELECT * FROM kategori ORDER BY id_kategori ASC");
-                                                    while ($dk = $data2->fetch_array()) {
-                                                    ?>
-                                                        <option value="<?= $dk['id_kategori'] ?>"><?= $dk['nama_kategori'] ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="ket_spd" class="col-sm-2 col-form-label"> Keterangan Perjalanan Dinas</label>
-                                            <div class="col-sm-10">
-                                                <textarea type="text" class="form-control" id="ket_spd" name="ket_spd"></textarea>
+                                                <textarea type="text" class="form-control" id="nama_spd" name="nama_spd"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -155,8 +141,7 @@ include '../../templates/head.php';
     if (isset($_POST['submit'])) {
         $no_surat        = $_POST['no_surat'];
         $tgl_pd          = $_POST['tgl_pd'];
-        $id_kategori     = $_POST['id_kategori'];
-        $ket_spd         = $_POST['ket_spd'];
+        $nama_spd         = $_POST['nama_spd'];
         $tujuan_pd       = $_POST['tujuan_pd'];
         $keperluan_pd    = $_POST['keperluan_pd'];
     
@@ -229,8 +214,7 @@ include '../../templates/head.php';
             NULL,
             '$no_surat',
             '$tgl_pd',
-            '$id_kategori',
-            '$ket_spd',
+            '$nama_spd',
             '$tujuan_pd',
             '$keperluan_pd',
             'Menunggu',

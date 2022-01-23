@@ -51,15 +51,15 @@ $bln = array(
 </head>
 
 <body>
-<img src="<?= base_url('assets/dist/img/logo.png') ?>" align="left" width="90" height="90">
+    <img src="<?= base_url('assets/dist/img/logo.png') ?>" align="left" width="90" height="90">
     <p align="center"><b>
-        <font size="5" align="center">PEMERINTAH KABUPATEN BARITO KUALA </font> <br>
-        <font size="5" align="center">KECAMATAN MEKAR SARI</font><br>
-        <font size="5" align="center">DESA TINGGIRAN TENGAH</font><br>
-        <font size="2">Jl. Handil Mesjid RT 04 Kec. Mekarsari Kab.Barito Kuala Kode Pos 70568</font><br>
-        <hr size="2px" color="black">
+            <font size="5" align="center">PEMERINTAH KABUPATEN BARITO KUALA </font> <br>
+            <font size="5" align="center">KECAMATAN MEKAR SARI</font><br>
+            <font size="5" align="center">DESA TINGGIRAN TENGAH</font><br>
+            <font size="2">Jl. Handil Mesjid RT 04 Kec. Mekarsari Kab.Barito Kuala Kode Pos 70568</font><br>
+            <hr size="2px" color="black">
         </b></p>
-        <h3 style="text-align:center;">Laporan Surat Keluar</h3>
+    <h3 style="text-align:center;">Laporan Surat Keluar</h3>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
@@ -71,7 +71,6 @@ $bln = array(
                             <th>Tanggal Terima</th>
                             <th>Kategori</th>
                             <th>Keterangan Surat</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -83,7 +82,6 @@ $bln = array(
                                 <td><?= tgl_indo($row['tgl_kirim']) ?></td>
                                 <td><?= $row['nama_kategori'] ?></td>
                                 <td><?= $row['ket_surat'] ?></td>
-                                <td>Verifikasi Admin : <?=  $row['status_admin'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

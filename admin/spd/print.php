@@ -9,19 +9,10 @@ if (isset($_POST['cetak'])) {
     $tgl2 = $_POST['tgl2'];
 
     $data = $koneksi->query("SELECT * FROM
-     surat_pd AS spd 
-     LEFT JOIN kategori AS k ON spd.id_kategori = k.id_kategori
-    WHERE spd.tgl_pd BETWEEN '$tgl1' AND '$tgl2' ORDER BY spd.tgl_pd ASC");
+     surat_pd 
+    WHERE tgl_pd BETWEEN '$tgl1' AND '$tgl2' ORDER BY tgl_pd ASC");
 }
 
-if (isset($_POST['c1'])) {
-    $kategori = $_POST['id_kategori'];
-
-    $data = $koneksi->query("SELECT * FROM
-     surat_pd AS spd 
-     LEFT JOIN kategori AS k ON spd.id_kategori = k.id_kategori
-    WHERE spd.id_kategori = '$kategori'");
-}
 
 $bln = array(
     '01' => 'Januari',
@@ -52,15 +43,15 @@ $bln = array(
 </head>
 
 <body>
-<img src="<?= base_url('assets/dist/img/logo.png') ?>" align="left" width="90" height="90">
+    <img src="<?= base_url('assets/dist/img/logo.png') ?>" align="left" width="90" height="90">
     <p align="center"><b>
-        <font size="5" align="center">PEMERINTAH KABUPATEN BARITO KUALA </font> <br>
-        <font size="5" align="center">KECAMATAN MEKAR SARI</font><br>
-        <font size="5" align="center">DESA TINGGIRAN TENGAH</font><br>
-        <font size="2">Jl. Handil Mesjid RT 04 Kec. Mekarsari Kab.Barito Kuala Kode Pos 70568</font><br>
-        <hr size="2px" color="black">
+            <font size="5" align="center">PEMERINTAH KABUPATEN BARITO KUALA </font> <br>
+            <font size="5" align="center">KECAMATAN MEKAR SARI</font><br>
+            <font size="5" align="center">DESA TINGGIRAN TENGAH</font><br>
+            <font size="2">Jl. Handil Mesjid RT 04 Kec. Mekarsari Kab.Barito Kuala Kode Pos 70568</font><br>
+            <hr size="2px" color="black">
         </b></p>
-        <h3 style="text-align:center;">Laporan Surat Perjalan Dinas</h3>
+    <h3 style="text-align:center;">Laporan Surat Perjalan Dinas</h3>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
@@ -70,11 +61,9 @@ $bln = array(
                             <th>No</th>
                             <th>Nomor Surat Perjalan Dinas</th>
                             <th>Tanggal Perjalanan Dinas</th>
-                            <th>Kategori</th>
-                            <th>Keterangan Perjalanan Dinas</th>
+                            <th>Nama yang Melakukan Perjalanan Dinas</th>
                             <th>Tujuan Perjalanan Dinas</th>
                             <th>Keperluan Perjalanan Dinas</th>
-                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -84,11 +73,9 @@ $bln = array(
                                 <td align="center"><?= $no++ ?></td>
                                 <td><?= $row['no_surat'] ?></td>
                                 <td><?= tgl_indo($row['tgl_pd']) ?></td>
-                                <td><?= $row['nama_kategori'] ?></td>
-                                <td><?= $row['ket_spd'] ?></td>
+                                <td><?= $row['nama_spd'] ?></td>
                                 <td><?= $row['tujuan_pd'] ?></td>
                                 <td><?= $row['keperluan_pd'] ?></td>
-                                <td>Verifikasi Admin : <?=  $row['status_admin'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

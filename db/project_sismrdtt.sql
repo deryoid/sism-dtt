@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 15 Jan 2022 pada 08.42
+-- Waktu pembuatan: 23 Jan 2022 pada 09.18
 -- Versi server: 5.7.34
 -- Versi PHP: 8.0.8
 
@@ -39,8 +39,7 @@ CREATE TABLE `kategori` (
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `ket`) VALUES
 (1, 'Penting', 'Kategori ini ditujukan untuk surat yang penting dan harus segera di tanggapi.'),
-(2, 'Undangan', 'Kategori ini ditujukan untuk surat yang berjenis undangan.'),
-(3, 'Perjalanan Dinas', 'Kategori ini ditujukan untuk surat yang berjenis perjalanan dinas.');
+(2, 'Undangan', 'Kategori ini ditujukan untuk surat yang berjenis undangan.');
 
 -- --------------------------------------------------------
 
@@ -86,6 +85,13 @@ CREATE TABLE `surat_keluar` (
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `surat_keluar`
+--
+
+INSERT INTO `surat_keluar` (`id_sk`, `no_surat`, `tgl_kirim`, `tujuan`, `id_kategori`, `ket_surat`, `status_admin`, `status_pimpinan`, `file`) VALUES
+(1, '908/15.B/BUJ/2022', '2022-01-23', 'DISDIK KAB.HSS', 1, '-', 'Menunggu', 'Menunggu', '47171.docx');
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +111,13 @@ CREATE TABLE `surat_masuk` (
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `surat_masuk`
+--
+
+INSERT INTO `surat_masuk` (`id_sm`, `no_surat`, `tgl_terima`, `pengirim`, `id_kategori`, `ket_surat`, `status_admin`, `status_pimpinan`, `tanggapan`, `file`) VALUES
+(1, '0182/B.15/SM/DUKCAPIL/2022', '2022-01-23', 'Syarifudin', 1, '-', 'Menunggu', 'Menunggu', 'Menunggu Tanggapan', '42781.docx');
+
 -- --------------------------------------------------------
 
 --
@@ -115,8 +128,7 @@ CREATE TABLE `surat_pd` (
   `id_spd` int(11) NOT NULL,
   `no_surat` varchar(100) NOT NULL,
   `tgl_pd` date NOT NULL,
-  `id_kategori` int(11) NOT NULL,
-  `ket_spd` text NOT NULL,
+  `nama_spd` varchar(150) NOT NULL,
   `tujuan_pd` varchar(50) NOT NULL,
   `keperluan_pd` varchar(200) NOT NULL,
   `status_admin` varchar(18) NOT NULL,
@@ -124,6 +136,13 @@ CREATE TABLE `surat_pd` (
   `tanggapan` text NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `surat_pd`
+--
+
+INSERT INTO `surat_pd` (`id_spd`, `no_surat`, `tgl_pd`, `nama_spd`, `tujuan_pd`, `keperluan_pd`, `status_admin`, `status_pimpinan`, `tanggapan`, `file`) VALUES
+(1, '0182/B.15/SM/DUKCAPIL/2022', '2022-01-23', 'Salaffudin', 'Banda Aceh', 'Pelatihan Diklat', 'Menunggu', 'Menunggu', 'Menunggu Tanggapan', '49177.docx');
 
 -- --------------------------------------------------------
 
@@ -182,8 +201,7 @@ ALTER TABLE `surat_masuk`
 -- Indeks untuk tabel `surat_pd`
 --
 ALTER TABLE `surat_pd`
-  ADD PRIMARY KEY (`id_spd`),
-  ADD KEY `id_kategori` (`id_kategori`);
+  ADD PRIMARY KEY (`id_spd`);
 
 --
 -- Indeks untuk tabel `user`
@@ -211,25 +229,25 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT untuk tabel `surat_keluar`
 --
 ALTER TABLE `surat_keluar`
-  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_sk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `surat_masuk`
 --
 ALTER TABLE `surat_masuk`
-  MODIFY `id_sm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_sm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `surat_pd`
 --
 ALTER TABLE `surat_pd`
-  MODIFY `id_spd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_spd` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -246,12 +264,6 @@ ALTER TABLE `surat_keluar`
 --
 ALTER TABLE `surat_masuk`
   ADD CONSTRAINT `surat_masuk_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
-
---
--- Ketidakleluasaan untuk tabel `surat_pd`
---
-ALTER TABLE `surat_pd`
-  ADD CONSTRAINT `surat_pd_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

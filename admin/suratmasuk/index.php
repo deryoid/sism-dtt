@@ -51,7 +51,7 @@ include '../../templates/head.php';
                             <div class="card card-primary card-outline">
                                 <div class="card-header">
                                     <a href="tambah" class="btn bg-blue"><i class="fa fa-plus-circle"> Tambah Data</i></a>
-                                    <a href="#" data-toggle="modal" data-target="#lap_suratmasuk" class="btn bg-info" ><i class="fa fa-print"> Cetak</i></a>
+                                    <a href="#" data-toggle="modal" data-target="#lap_suratmasuk" class="btn bg-info"><i class="fa fa-print"> Cetak</i></a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -76,20 +76,19 @@ include '../../templates/head.php';
                                                     <th>Nama Pengirim</th>
                                                     <th>Kategori</th>
                                                     <th>Keterangan Surat</th>
-                                                    <th>Status</th>
                                                     <th>File</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
-                                                <tbody style="background-color: azure">
-                                            <?php
-                                            $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM
+                                            <tbody style="background-color: azure">
+                                                <?php
+                                                $no = 1;
+                                                $data = $koneksi->query("SELECT * FROM
                                             surat_masuk AS sm 
                                             LEFT JOIN kategori AS k ON sm.id_kategori = k.id_kategori
                                             ORDER BY sm.id_sm DESC");
-                                            while ($row = $data->fetch_array()) {
-                                            ?>
+                                                while ($row = $data->fetch_array()) {
+                                                ?>
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
                                                         <td><?= $row['no_surat'] ?></td>
@@ -97,43 +96,17 @@ include '../../templates/head.php';
                                                         <td><?= $row['pengirim'] ?></td>
                                                         <td><?= $row['nama_kategori'] ?></td>
                                                         <td><?= $row['ket_surat'] ?></td>
-                                                        <td>
-                                                        <?php 
-                                                            if ($row['status_admin'] == 'Menunggu'){
-                                                                echo "<span class='badge badge-warning'>Verifikasi Admin : ".$row['status_admin']."</span>";
-                                                            }else
-                                                            if ($row['status_admin'] == 'Ditolak'){
-                                                                echo "<span class='badge badge-danger'>Verifikasi Admin : ".$row['status_admin']."</span>";
-                                                            }else
-                                                            if ($row['status_admin'] == 'Disetujui'){
-                                                                echo "<span class='badge badge-success'>Verifikasi Admin : ".$row['status_admin']."</span>";
-                                                            }   
-                                                           
-                                                        ?>
-                                                        </td>
-                                                        <td><a href="<?= base_url(); ?>/filesurat/<?= $row['file']?>" data-title="file" data-gallery="galery" title="Lihat" target="blank"><i>Lihat File</i></a></td>
-                                                                                                              
+
+                                                        <td><a href="<?= base_url(); ?>/filesurat/<?= $row['file'] ?>" data-title="file" data-gallery="galery" title="Lihat" target="blank"><i>Lihat File</i></a></td>
+
                                                         <td align="center">
-                                                        <a href="hapus?id=<?= $row['id_sm'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
-                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                                <?php if ($row['status_admin'] == "Menunggu") { ?>
-                                                                    <span class="badge badge-warning"><?= $row['status_admin'] ?></span>
-                                                                <?php } elseif ($row['status_admin'] == "Ditolak") { ?>
-                                                                    <span class="badge badge-danger"><?= $row['status_admin'] ?></span>
-                                                                <?php } else { ?>
-                                                                    <span class="badge badge-success"><?= $row['status_admin'] ?></span>
-                                                                <?php } ?>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="status?id=<?= $row['id_sm'] ?>&v=Disetujui">Disetujui</a>
-                                                                <a class="dropdown-item" href="status?id=<?= $row['id_sm'] ?>&v=Menunggu">Menunggu</a>
-                                                                <a class="dropdown-item" href="status?id=<?= $row['id_sm'] ?>&v=Ditolak">Ditolak</a>
-                                                            </div>
+                                                            <a href="hapus?id=<?= $row['id_sm'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
+
                                                         </td>
-                                                        
+
                                                     </tr>
-                                            <?php } ?>
-                                                </tbody>
+                                                <?php } ?>
+                                            </tbody>
                                         </table>
                                     </div>
 
@@ -189,21 +162,21 @@ include '../../templates/head.php';
             </div>
             <div class="modal-body">
 
-            <!-- kategori -->
-            <label style="font-size: 15px; font-style: bold;">Berdasarkan Kategori</label>
+                <!-- kategori -->
+                <label style="font-size: 15px; font-style: bold;">Berdasarkan Kategori</label>
                 <form method="POST" target="blank" action="<?= base_url('admin/suratmasuk/print.php') ?>">
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
-                            <select class="form-control select2" data-placeholder="Pilih" id="id_kategori" name="id_kategori">
-                                <option value=""></option>
-                                <?php
-                                $data2 = $koneksi->query("SELECT * FROM kategori ORDER BY id_kategori ASC");
-                                while ($dk = $data2->fetch_array()) {
-                                ?>
-                                    <option value="<?= $dk['id_kategori'] ?>"><?= $dk['nama_kategori'] ?></option>
-                                <?php } ?>
-                            </select>
+                                <select class="form-control select2" data-placeholder="Pilih" id="id_kategori" name="id_kategori">
+                                    <option value=""></option>
+                                    <?php
+                                    $data2 = $koneksi->query("SELECT * FROM kategori ORDER BY id_kategori ASC");
+                                    while ($dk = $data2->fetch_array()) {
+                                    ?>
+                                        <option value="<?= $dk['id_kategori'] ?>"><?= $dk['nama_kategori'] ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-4">
